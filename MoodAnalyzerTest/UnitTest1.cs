@@ -1,4 +1,5 @@
 using MoodAnalyzerProblem;
+using NUnit.Framework;
 
 namespace MoodAnalyzerTest
 {
@@ -25,7 +26,7 @@ namespace MoodAnalyzerTest
         {
             try
             {
-                string message = "I am in good mood";
+                string message = null;
                 MoodAnalyzer moodAnalyzer = new MoodAnalyzer(message);
                 string res = moodAnalyzer.AnalyzeMood();
             }
@@ -34,5 +35,20 @@ namespace MoodAnalyzerTest
                 Assert.AreEqual("message is null", ex.Message);
             }
         }
+        [Test]
+        public void GivenEmptyMood_WhenAnalyze_ShouldReturnEmpty()
+        {
+            try
+            {
+                string message = "";
+                MoodAnalyzer moodAnalyzer = new MoodAnalyzer(message);
+                string res = moodAnalyzer.AnalyzeMood();
+            }
+            catch (Exception ex)
+            {
+                Assert.AreEqual("message is empty", ex.Message);
+            }
+        }
+
     }
 }
