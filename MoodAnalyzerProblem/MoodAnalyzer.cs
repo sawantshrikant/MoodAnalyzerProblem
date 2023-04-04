@@ -9,9 +9,17 @@
         }
         public string AnalyzeMood()
         {
-            if (message.ToLower().Contains("sad"))
-                return "SAD";
-            return "HAPPY";
+            try
+            {
+                if (message.ToLower().Contains("sad"))
+                    return "SAD";
+                return "HAPPY";
+            }
+            catch (Exception)
+            {
+                throw new MoodAnalyzerException(MoodAnalyzerException.ExceptionType.NULL_MOOD, "message is null");
+            }
+
         }
 
     }
